@@ -37,3 +37,4 @@ Le fonctionnemment des pools est assez basique. De plus il est impossible de min
 
 #### Les récompenses
 
+Le système de récompense lui est plus complexe, il est propre à ce coin et a été créé pour récompenser les mineurs qui polluent le moins, autrement dit les mineurs qui minent le moins vite.
