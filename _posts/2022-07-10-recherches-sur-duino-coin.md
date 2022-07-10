@@ -23,14 +23,17 @@ Pour miner il suffit de bruteforcer toutes les nombres entre `0` et `difficulté
 
 Lorsque hash 1 et hash 2 sont identiques, le mineur renvoie son resultat et se voit attribuer une récompense.
 
-``` 
+```python 
 for result in range(int(diff)*100+1): # test des possibilités
-    temp_hash = base_hash.copy()
-    temp_hash.update(str(result).encode('ascii'))
+    temp_hash = base_hash.copy() #on copie le hash original
+    temp_hash.update(str(result).encode('ascii')) #auquel on ajoute le nombre actuel
     ducos1 = temp_hash.hexdigest()
 
-    if hash_searched ==ducos1:
+    if hash_searched ==ducos1: # si le hash cherché est le même que le hash généré alors on a trouvé
         print('Found hash key:',result) 
 ```
 
+Le fonctionnemment des pools est assez basique. De plus il est impossible de miner en solo on est obligé de demander un job à l'un des serveurs principaux.
+
+#### Les récompenses
 
