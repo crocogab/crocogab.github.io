@@ -13,6 +13,10 @@ Le but de cette crypto est de pouvoir être minée par tous, sur n'importe quel 
 #### Fonctionnement des pools
 
 Le fonctionnement des pools est assez simple à comprendre.
-Un mineur se connecte à la pool et demande un `job` 
+Un mineur se connecte à la pool et demande un `job` , la pool analyse le type d'appareil connecté et renvoie un `job` contenant deux hash et une difficulté sous cette forme `hash1,hash2,difficulté`.
+
+![Pool fonctionnement](/img/test1.png)
+
+Le hash 1 est le hash originel donné par la pool, le hash 2  
 
 
