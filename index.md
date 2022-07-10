@@ -1,4 +1,4 @@
-<h1 align="center">Hello 👋, c'est Crocogab</h1>
+<h1 align="center">Hello 👋, c'est Gab</h1>
 <h3 align="center">Un étudiant de MP2I passionné d'info</h3>
 
 

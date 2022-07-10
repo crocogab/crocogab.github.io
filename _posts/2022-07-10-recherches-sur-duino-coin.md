@@ -2,5 +2,16 @@
 
 Tout d'abord c'est quoi DuinoCoin ? 
 
-DuinoCoin est une crypto qui se veut de pouvoir être minée par tous et "éco repsonsable".
+DuinoCoin est une crypto qui se veut de pouvoir être minée par tous et "éco responsable".
+
+Le but de cette crypto est de pouvoir être minée par tous, sur n'importe quel appareil et d'être accessible aux débutants.
+
+---
+
+### Mining et récompenses
+
+#### Fonctionnement des pools
+
+
+
 
