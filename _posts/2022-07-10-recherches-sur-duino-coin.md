@@ -17,6 +17,20 @@ Un mineur se connecte à la pool et demande un `job` , la pool analyse le type d
 
 ![Pool fonctionnement](/img/test1.png)
 
-Le hash 1 est le hash originel donné par la pool, le hash 2  
+Le hash 1 est le hash originel donné par la pool, le hash 2 est le hash recherché par le mineur et la difficulté donne le niveau de difficulté du hash.
+
+Pour miner il suffit de bruteforcer toutes les nombres entre `0` et `difficulté*100+1` 
+
+Lorsque hash 1 et hash 2 sont identiques, le mineur renvoie son resultat et se voit attribuer une récompense.
+
+``` 
+for result in range(int(diff)*100+1): # test des possibilités
+    temp_hash = base_hash.copy()
+    temp_hash.update(str(result).encode('ascii'))
+    ducos1 = temp_hash.hexdigest()
+
+    if hash_searched ==ducos1:
+        print('Found hash key:',result) 
+```
 
 
