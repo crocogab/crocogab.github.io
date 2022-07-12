@@ -67,6 +67,17 @@ Or celle ci n'est pas cryptographique et donc possible à prédire.
 
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Earlier in the <a href="https://twitter.com/DuinoCoin?ref_src=twsrc%5Etfw">@DuinoCoin</a> saga, I reported an RNG state recovery vuln in their mining protocol. They responded by banning me from their discord server.<a href="https://twitter.com/CryptoHack__?ref_src=twsrc%5Etfw">@CryptoHack__</a> user someone12469 has implemented an exploit for this, and currently controls &gt;95% of the mining hashrate. <a href="https://t.co/3BNuVJML0W">pic.twitter.com/3BNuVJML0W</a></p>&mdash; David Buchanan (@David3141593) <a href="https://twitter.com/David3141593/status/1445361492979851267?ref_src=twsrc%5Etfw">October 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Après des recherches pour savoir si cette fonction était toujours utilisée par Duinocoin je suis tombé sur le code source d'une pool Duinocoin.
+Après des recherches pour savoir si cette fonction était toujours utilisée par Duinocoin je suis tombé sur le code source d'une pool Duinocoin :
 
-
+```javascript
+const getRand = (max) => {
+    try {
+        return crypto.randomInt(max); // cette fonction est cryptographique
+    } catch (err) {
+        console.log(err);
+        return Math.floor(Math.random() * max);
+    }
+}
+```
+On voit bien ici qu'il s'agit bien cette fois d'une focntion cryptographique. 
+Cet exploit n'est donc plus possible. 
