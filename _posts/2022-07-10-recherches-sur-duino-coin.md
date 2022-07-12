@@ -45,3 +45,5 @@ Ce système s'appelle *Kolka* et les récompensent dépendent :
 - Du **nombre de hash résolus** ⇒ plus il y a de hash résolus plus les récompenses sont importantes
 - De **la difficulté** ⇒ plus elle est grande plus les récompenses sont importantes
 - De **l'aléatoire** ⇒ permet d'équilibrer le système de récompense lié à l'aléatoire
+
+De plus le système ajuste la difficulté des `jobs` en fonction du temps prévu pour résoudre le hash et du temps mis.
