@@ -60,7 +60,13 @@ De plus il existe en informatique 2 types de générateurs de nombres aléatoire
 - **Le générateur de nombres pseudos-aléatoires** ⇒ il génère des nombres pseudos-aléatoires. Ce n'est pas un probleme mais **IL NE DOIT ABSOLUMENT PAS ÊTRE UTILISE DANS UN CADRE CRYPTOGRAPHIQUE CAR SA GENERATION PEUT ÊTRE PRÉDITE**
 - **Le générateur de nombres aléatoires cryptographique** ⇒ il génère des nombres réellements aléatoires. Il est certes plus lent mais il peut être utilisé en cryptographie.
 
+Dans le cadre d'une crypto monnaie  il est donc essentiel d'utiliser le deuxième générateur.
+
+Or d'après le thread twitter suivant il semblait que les précédentes versions de duinoCoin utilisaient la fonction math.random() pour générer des nombres aléatoires.
+Or celle ci n'est pas cryptographique et donc possible à prédire.
 
 <blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Earlier in the <a href="https://twitter.com/DuinoCoin?ref_src=twsrc%5Etfw">@DuinoCoin</a> saga, I reported an RNG state recovery vuln in their mining protocol. They responded by banning me from their discord server.<a href="https://twitter.com/CryptoHack__?ref_src=twsrc%5Etfw">@CryptoHack__</a> user someone12469 has implemented an exploit for this, and currently controls &gt;95% of the mining hashrate. <a href="https://t.co/3BNuVJML0W">pic.twitter.com/3BNuVJML0W</a></p>&mdash; David Buchanan (@David3141593) <a href="https://twitter.com/David3141593/status/1445361492979851267?ref_src=twsrc%5Etfw">October 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Après des recherches pour savoir si cette fonction était toujours utilisée par Duinocoin je suis tombé sur le code source d'une pool Duinocoin.
 
 
