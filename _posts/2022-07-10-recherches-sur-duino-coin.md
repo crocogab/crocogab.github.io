@@ -37,9 +37,11 @@ Le fonctionnemment des pools est assez basique. De plus il est impossible de min
 
 #### Les récompenses
 
-Le système de récompense lui est plus complexe, il est propre à ce coin et a été créé pour récompenser les mineurs qui polluent le moins, autrement dit les mineurs qui minent le moins vite.
+Le système de récompense lui est plus complexe, il est propre à ce coin et a été créé pour récompenser les mineurs qui polluent le moins, autrement dit les mineurs qui minent le moins vite de plus, la difficulté du travail dépend du type de miner ⇒ PC / AVR / ESP.
 
-Il s'appelle Kolka et fonctionne de la facon suivante:
-
-- La difficulté du travail dépend du type de miner ⇒ PC / AVR / ESP
-- 
+Ce système s'appelle *Kolka* et les récompensent dépendent :
+- Du **hashrate** ⇒ plus il est bas plus les récompenses sont importantes
+- Du **temps de travail** ⇒ plus il est long plus les récompenses sont importantes
+- Du **nombre de hash résolus** ⇒ plus il y a de hash résolus plus les récompenses sont importantes
+- De **la difficulté** ⇒ plus elle est grande plus les récompenses sont importantes
+- De **l'aléatoire** ⇒ permet d'équilibrer le système de récompense lié à l'aléatoire
