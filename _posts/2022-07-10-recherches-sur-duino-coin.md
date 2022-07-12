@@ -47,3 +47,17 @@ Ce système s'appelle *Kolka* et les récompensent dépendent :
 - De **l'aléatoire** ⇒ permet d'équilibrer le système de récompense lié à l'aléatoire
 
 De plus le système ajuste la difficulté des `jobs` en fonction du temps prévu pour résoudre le hash et du temps mis.
+
+---
+
+### Premières recherches de vulnérabilités
+
+#### La fonction Math.random() 
+
+Un premier aspect qui m'a interressé est la génération de nombres aléatoires.
+En effet lorsque l'on génère un nombre aléatoire en informatique il n'est jamais réellement aléatoire (cf [Wikipedia](https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9rateur_de_nombres_al%C3%A9atoires)).
+
+
+<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">Earlier in the <a href="https://twitter.com/DuinoCoin?ref_src=twsrc%5Etfw">@DuinoCoin</a> saga, I reported an RNG state recovery vuln in their mining protocol. They responded by banning me from their discord server.<a href="https://twitter.com/CryptoHack__?ref_src=twsrc%5Etfw">@CryptoHack__</a> user someone12469 has implemented an exploit for this, and currently controls &gt;95% of the mining hashrate. <a href="https://t.co/3BNuVJML0W">pic.twitter.com/3BNuVJML0W</a></p>&mdash; David Buchanan (@David3141593) <a href="https://twitter.com/David3141593/status/1445361492979851267?ref_src=twsrc%5Etfw">October 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
