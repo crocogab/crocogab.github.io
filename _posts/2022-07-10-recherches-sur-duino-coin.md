@@ -88,4 +88,8 @@ Cet exploit n'est donc plus possible.
 
 #### L'émulation d'appareil
 
-En effet imaginons qu'à la
+En effet imaginons qu'à la place d'utiliser notre PC pour miner nous simulions d'autres mineurs moins puissants. Notre rendement se verrait alors grandement augmenté.
+
+On peut aisément représenter cela par le schéma qui suit.
+
+![Emulation](/img/test2.png)
