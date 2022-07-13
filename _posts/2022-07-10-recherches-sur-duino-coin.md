@@ -50,7 +50,7 @@ De plus le système ajuste la difficulté des `jobs` en fonction du temps prévu
 
 ---
 
-### Premières recherches de vulnérabilités
+### **Premières recherches de vulnérabilités**
 
 #### La fonction Math.random() 
 
@@ -81,3 +81,11 @@ const getRand = (max) => {
 ```
 On voit bien ici qu'il s'agit bien cette fois d'une focntion cryptographique. 
 Cet exploit n'est donc plus possible. 
+
+---
+
+### **Deuxième aspect de recherches**
+
+#### L'émulation d'appareil
+
+En effet imaginons qu'à la
