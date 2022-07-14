@@ -93,3 +93,19 @@ En effet imaginons qu'à la place d'utiliser notre PC pour miner nous simulions 
 On peut aisément représenter cela par le schéma qui suit.
 
 ![Emulation](/img/test2.png)
+
+Pour pouvoir faire cela il faut s'interesser au fichier python permettant le minage.
+
+Pour cela je vais essayer de comprendre comment fonctionne le fichier `Minimal_PC_Miner.py`
+
+Tout d'abord miner récupère l'***IP*** et le ***PORT*** grâce aux lignes 35 à 39.
+
+```python
+response = requests.get(
+                "https://server.duinocoin.com/getPool"
+            ).json() #récupère la pool grâce à l'API de duinocoin
+NODE_ADDRESS = response["ip"] # on obtient l'IP
+NODE_PORT = response["port"] # puis le port
+```
+
+Ensuite on se connecte grâce à la librairie socket.
