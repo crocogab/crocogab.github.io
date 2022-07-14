@@ -108,4 +108,42 @@ NODE_ADDRESS = response["ip"] # on obtient l'IP
 NODE_PORT = response["port"] # puis le port
 ```
 
-Ensuite on se connecte grâce à la librairie socket.
+Ensuite on se connecte à la pool grâce à la librairie socket.
+Lors de la connection le serveur envoie la version de son logiciel.
+Le code suivant en montre le fonctionnement :
+
+```python
+soc.connect((str(NODE_ADDRESS), int(NODE_PORT))) #se connecte à la pool
+print(f'{current_time()} : Fastest connection found') #debug
+server_version = soc.recv(100).decode() #récupère la version du serveur
+print (f'{current_time()} : Server Version: '+ server_version)#debug
+```
+On arrive ensuite sur la partie intéressante : **la fonction de minage**.
+
+Le code est vraiment facile à comprendre :
+```python
+while True:
+    if UseLowerDiff: # si la difficulté est faible
+        # envoie la requête demandant un job
+        soc.send(bytes(
+            "JOB,"
+            + str(username)
+            + ",LOW," # difficulté du job
+            + str(mining_key),
+            encoding="utf8"))
+    else:
+        # envoie la requête demandant un job
+        soc.send(bytes(
+            "JOB,"
+            + str(username)
+            + ",MEDIUM,"  # difficulté du job
+            + str(mining_key),
+            encoding="utf8"))
+```
+Il s'agit donc du client qui fait une demande de `job` au serveur.
+Cette demande se fait sous la forme de `bytes` (car on utilise des sockets).
+La demande est sous la forme type suivante : `JOB,username,difficulty,mining_key`.
+
+Ce à quoi le serveur réponds par : `hash1,hash2,difficulté` (cf [explication](#L13))
+
+Mais il ne s'agit ici que du mineur PC, et nous ne savons pas comment fonctionne le mineur arduino.
