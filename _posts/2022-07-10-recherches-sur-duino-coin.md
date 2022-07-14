@@ -147,3 +147,81 @@ La demande est sous la forme type suivante : `JOB,username,difficulty,mining_key
 Ce à quoi le serveur réponds par : `hash1,hash2,difficulté` (cf [explication](#L13))
 
 Mais il ne s'agit ici que du mineur PC, et nous ne savons pas comment fonctionne le mineur arduino.
+Quelle requête est envoyée au serveur lorsqu'il s'agit d'un arduino ?
+Notre réponse se trouve aux lignes 655/656 du fichier `Esp32_Code.ino`
+```ino
+jobClient.print("JOB," + String(DUCO_USER) + ",ESP32," + String(MINER_KEY) + "," +
+                        String(temp.temperature) + "@" + String(hum.relative_humidity) +  MSGNEWLINE);
+```
+La structure de la requête est la même qu'en python sauf qu'à la place de la difficulté on a : `ESP32`
+
+Voyons voir si en changeant cela dans notre requête python la difficulté change, ce qui signifierait que le serveur nous considère comme un arduino.
+
+On commence par tester notre mineur comme si on était un PC :
+
+```python
+from socket import socket
+import requests
+
+
+soc = socket()
+
+response = requests.get(
+                "https://server.duinocoin.com/getPool"
+            ).json()
+NODE_ADDRESS = response["ip"]
+NODE_PORT = response["port"]
+
+soc.connect((str(NODE_ADDRESS), int(NODE_PORT)))
+server_version = soc.recv(100).decode()
+print(server_version)
+
+soc.send(bytes(
+                    "JOB,"
+                    + str('crocogab')
+                    + ",LOW,"
+                    + str('crocogab'),
+                    encoding="utf8"))
+
+job = soc.recv(1024).decode().rstrip("\n")
+print(job)
+
+>>>3.0
+>>>874c201bb638b0c33d5e00d32dbb73bd60e4487b,f8ee59a0e57264b2e531158bb1f12126c6188123,25000
+```
+On voit bien ici que la difficulté est de `25000`.
+Maitenant changeons la difficulté dans la requête.
+Le code est identique sauf à la ligne `19`. On obtient le code suivant :
+
+```python
+from socket import socket
+import requests
+
+
+soc = socket()
+
+response = requests.get(
+                "https://server.duinocoin.com/getPool"
+            ).json()
+NODE_ADDRESS = response["ip"]
+NODE_PORT = response["port"]
+
+soc.connect((str(NODE_ADDRESS), int(NODE_PORT)))
+server_version = soc.recv(100).decode()
+print(server_version)
+
+soc.send(bytes(
+                    "JOB,"
+                    + str('crocogab')
+                    + ",ESP32," # CHANGEMENT ICI
+                    + str('crocogab'),
+                    encoding="utf8"))
+
+job = soc.recv(1024).decode().rstrip("\n")
+print(job)
+
+>>>3.0
+>>>18aea142ebd5aabcf309cb66149e2c8b0d07d75a,55df133b7e1f2f43054537b622644e8e32954926,1500
+```
+De plus la difficulté a été changé on est passé à `1500` ce qui signifie que le serveur nous considère comme un arduino.
+Essayons maitenant de miner quelques bloc pour voir si le web wallet nous considère bien comme un arduino.
