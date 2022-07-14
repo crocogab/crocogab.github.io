@@ -144,7 +144,7 @@ Il s'agit donc du client qui fait une demande de `job` au serveur.
 Cette demande se fait sous la forme de `bytes` (car on utilise des sockets).
 La demande est sous la forme type suivante : `JOB,username,difficulty,mining_key`.
 
-Ce à quoi le serveur réponds par : `hash1,hash2,difficulté` (cf [explication](#L13))
+Ce à quoi le serveur réponds par : `hash1,hash2,difficulté` (cf [explication](#Fonctionnement-des-pools))
 
 Mais il ne s'agit ici que du mineur PC, et nous ne savons pas comment fonctionne le mineur arduino.
 Quelle requête est envoyée au serveur lorsqu'il s'agit d'un arduino ?
@@ -225,3 +225,20 @@ print(job)
 ```
 De plus la difficulté a été changé on est passé à `1500` ce qui signifie que le serveur nous considère comme un arduino.
 Essayons maitenant de miner quelques bloc pour voir si le web wallet nous considère bien comme un arduino.
+Pour cela il nous faut aussi changer la requête pour envoyer le résultat.
+
+```python
+soc.send(bytes(
+                        str(result)
+                        + ","
+                        + str(hashrate)
+                        + ",ESP32", # et non pas PC
+                        encoding="utf8"))
+```
+
+Et cela fonctionne !
+
+![Resultats](/img/test3.png)
+![Resultats](/img/test4.png)
+
+Malheureusement l'accuracy tends vers 50% et je ne sais pas pourquoi.
