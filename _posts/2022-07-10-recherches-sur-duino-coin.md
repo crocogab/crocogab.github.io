@@ -238,7 +238,7 @@ soc.send(bytes(
 
 Et cela fonctionne !
 
-![Resultats](/img/test3.png)
-![Resultats](/img/test4.png)
+![Resultats](/img/test3.PNG)
+![Resultats](/img/test4.PNG)
 
 Malheureusement l'accuracy tends vers 50% et je ne sais pas pourquoi.
