@@ -29,13 +29,13 @@ Un token JWT se décompose en 3 parties:
 
 Une fois le challenge démarré on arrive sur une page de connexion.
 
-![Login Page](/img/challenge.png)
+![Login Page](/img/challenge.PNG)
 
 Sahant que le challenge porte sur les tokens JWT je commence par regarder dans mon navigateur si je possède déjà un token JWT.
 
 Or rien ce n'est pas le cas comme on peut le voir sur l'image suivante.
 
-![Token](/img/token.png)
+![Token](/img/token.PNG)
 
 Une information attire mon attention :  il est possible de se connecter en tant qu'invité !
 
@@ -49,13 +49,13 @@ Grâce au site https://jwt.io/ il est possible de lire et décoder un token JWT.
 
 Une fois le token entré on obtient les informations suivantes :
 
-![Token decoded](/img/decoded.png)
+![Token decoded](/img/decoded.PNG)
 
 On comprend alors que le but du challenge va être de changer la valeur de username de 'guest' à 'admin'.
 
 De plus le site nous avertit car la signature n'est pas valide. Il s'agit d'une erreur grave qui va nous permettre de contourner la sécurité de ce token.
 
-![Signature](/img/signature.png)
+![Signature](/img/signature.PNG)
 
 L'attaque la plus simple pouvant être utilisée contre un token JWT consiste à supprimer l'algorithme de sécurité et de manipuler les données à notre guise.
 
@@ -65,7 +65,7 @@ Les tokens JWT sont encodés en base64 c'est à dire qu'il est reès facile de l
 
 C'est pour cela que si l'on copie le token sur cyberchef on obtient: 
 
-![Token decoded](/img/cyberchef.png)
+![Token decoded](/img/cyberchef.PNG)
 
 La 1ère partie contient le type d'algorithme utilisé, la 2ème partie le payload et enfin la 3ème partie la signature du token.
 
@@ -93,11 +93,11 @@ On obtient alors le token JWT suivant : `eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ
 
 Si on vient changer sa valeur dans le navigateur et qu'on actualise la page.
 
-![New Token](/img/changed.png)
+![New Token](/img/changed.PNG)
 
 On obtient le flag :)
 
-![Flag](/img/flag.png)
+![Flag](/img/flag.PNG)
 
 Ce challenge était vraiment simple mais il nous permettait de comprendre le fonctionnement basique d'un challenge JWT.
 
