@@ -61,7 +61,7 @@ L'attaque la plus simple pouvant être utilisée contre un token JWT consiste à
 
 Mais comment cela-est-il possible ?
 
-Les tokens JWT sont encodés en base64 c'est à dire qu'il est reès facile de les décoder.
+Les tokens JWT sont encodés en base64 c'est à dire qu'il est très facile de les décoder.
 
 C'est pour cela que si l'on copie le token sur cyberchef on obtient: 
 
