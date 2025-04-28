@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Diyan - Cybersécurité</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #151a36;
+            --secondary-color: #08d9d6;
+            --accent-color: #ff2e63;
+            --light-bg: #eaeaea;
+            --dark-text: #252a34;
+            --light-text: #f1f1f1;
+            --terminal-green: #0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--primary-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(8, 217, 214, 0.1), rgba(255, 46, 99, 0.1));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--secondary-color);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--secondary-color);
+            }
+            to {
+                text-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .hero-contact {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(21, 26, 54, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            scroll-margin-top: 70px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(8, 217, 214, 0.3);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .skill-list li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        /* Projects */
+        .project-item {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        .project-tech {
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        /* Education & Experience */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--light-bg);
+            border: 4px solid var(--accent-color);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-date {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Interests */
+        .interests-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .interest-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .interest-item:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px var(--secondary-color);
+        }
+        
+        .interest-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Terminal Effect */
+        .terminal {
+            background-color: #000;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+        
+        .terminal-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .terminal-button:nth-child(1) {
+            background-color: #ff5f56;
+        }
+        
+        .terminal-button:nth-child(2) {
+            background-color: #ffbd2e;
+        }
+        
+        .terminal-button:nth-child(3) {
+            background-color: #27c93f;
+        }
+        
+        .terminal-content {
+            margin-top: 30px;
+            padding-top: 10px;
+        }
+        
+        .terminal-line {
+            color: var(--terminal-green);
+            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .terminal-prompt::before {
+            content: "gabriel@diyan:~$ ";
+            color: var(--accent-color);
+        }
+        
+        .typing-animation {
+            animation: typing 4s steps(60, end);
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .interest-item {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .terminal-line {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#education">Formation</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#interests">Centres d'intérêt</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="matrix" class="matrix-bg"></canvas>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Gabriel Diyan</h1>
+            <p class="subtitle animate__animated animate__fadeInUp">Étudiant en Cybersécurité | Télécom Nancy</p>
+            <div class="terminal animate__animated animate__fadeIn animate__delay-1s">
+                <div class="terminal-header">
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-line terminal-prompt typing-animation">whoami</div>
+                    <div class="terminal-line">Passionné de cybersécurité avec +3900 points sur RootMe</div>
+                    <div class="terminal-line terminal-prompt typing-animation">cat contact.txt</div>
+                    <div class="terminal-line">31 rue de la colline, 54000 Nancy</div>
+                    <div class="terminal-line">(+33) 07 66 54 76 30 | diyangabriel8@gmail.com</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down" onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Compétences & Projets</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">Programmation</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C</li>
+                        <li>Go</li>
+                        <li>OCaml</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="skill-title">Cybersécurité</h3>
+                    <ul class="skill-list">
+                        <li>+3900 points sur RootMe</li>
+                        <li>Spécialisation en sécurité Web</li>
+                        <li>Développement de challenges CTF</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="skill-title">Technologies Web</h3>
+                    <ul class="skill-list">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Sécurité des applications Web</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 50px; color: var(--accent-color);">Projets notables</h3>
+            <div class="project-item">
+                <h4 class="project-title">Système de détection de fuites de données</h4>
+                <p class="project-tech">Technologies: Python, SQL, HTML, CSS</p>
+                <p>Développement d'une plateforme permettant de détecter les fuites de données sensibles avec alertes automatisées.</p>
+            </div>
+            <div class="project-item">
+                <h4 class="project-title">Challenges CTF</h4>
+                <p class="project-tech">Domaines: Pentesting, Exploitation Web, Reverse Engineering</p>
+                <p>Création et conception de défis pour des compétitions Capture The Flag, mettant à l'épreuve les compétences en sécurité informatique.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Formation</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Télécom Nancy</h3>
+                        <span class="timeline-date">Septembre 2024 à Juillet 2025</span>
+                        <p>Première année d'école d'ingénieur</p>
+                        <p>Spécialisation en Cybersécurité</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Lycée Kléber — Classe préparatoire MP2I-MPI</h3>
+                        <span class="timeline-date">Septembre 2022 à Juillet 2024</span>
+                        <p>Mathématiques supérieures/spéciales</p>
+                        <p>Formation intensive en mathématiques, physique et informatique</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Lycée Kléber — Baccalauréat</h3>
+                        <span class="timeline-date">Septembre 2019 à Juillet 2022</span>
+                        <p>Baccalauréat général option mathématiques, mathématiques expertes et informatique</p>
+                        <p>Mention très bien (17,66/20)</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Brevet d'Initiation Aéronautique (BIA)</h3>
+                        <span class="timeline-date">2019</span>
+                        <p>Obtention du BIA avec mention très bien</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Expérience</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>BDE Télécom Nancy — Responsable événementiel</h3>
+                        <span class="timeline-date">Septembre 2024 à Juillet 2025</span>
+                        <p>Organisation de soirées et d'évènements pour les étudiants de Télécom Nancy</p>
+                        <p>Gestion de budget et coordination d'équipe</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Hacking TN — Secrétaire</h3>
+                        <span class="timeline-date">Septembre 2024 à Juillet 2025</span>
+                        <p>Préparation des réunions</p>
+                        <p>Documentation des activités du club de cybersécurité</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Scoutisme — Chef scout</h3>
+                        <span class="timeline-date">2021 à 2023</span>
+                        <p>Encadrement et organisation d'un camp scout</p>
+                        <p>Développement des compétences en leadership et gestion d'équipe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests">
+        <div class="container">
+            <h2 class="section-title">Centres d'intérêt</h2>
+            <div class="interests-container">
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <p>Musique et mixage audio</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <p>CTF Cybersécurité</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <p>Escalade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Gabriel Diyan | CV interactif</p>
+    </footer>
+
+    <script>
+        // Matrix effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const cybersecurity = 'HACKERSECURITYFIREWALLMALWAREVIRUSENCRYPTIONVPN';
+        
+        const alphabet = katakana + latin + nums + cybersecurity;
+        
+        const fontSize = 16;
+        const columns = canvas.width/fontSize;
+        
+        const rainDrops = [];
+        
+        for( let x = 0; x < columns; x++ ) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < rainDrops.length; i++)
+            {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i*fontSize, rainDrops[i]*fontSize);
+                
+                if(rainDrops[i]*fontSize > canvas.height && Math.random() > 0.975){
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        // Sticky navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Timeline animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const isInViewport = function(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75
+            );
+        };
+        
+        const handleScroll = function() {
+            timelineItems.forEach(item => {
+                if (isInViewport(item)) {
+                    item.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+        
+        // Resize functionality
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
