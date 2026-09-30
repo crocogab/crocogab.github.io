@@ -3,6 +3,7 @@ title: "Nebula — Level 03"
 date: 2026-09-25T19:56:16Z
 weight: 4
 series: "nebula"
+thumbLabel: "03"
 tags: ["nebula", "linux", "cron", "permissions"]
 description: "Writeup du level 03 de Nebula (Exploit Education) : Crontab et permissions UNIX."
 ---

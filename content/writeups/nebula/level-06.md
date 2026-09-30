@@ -3,6 +3,7 @@ title: "Nebula — Level 06"
 date: 2026-09-27T12:12:42Z
 weight: 7
 series: "nebula"
+thumbLabel: "06"
 tags: ["nebula", "linux", "password-cracking"]
 description: "Writeup du level 06 de Nebula (Exploit Education) : Legacy Unix, crack de hash DES."
 ---

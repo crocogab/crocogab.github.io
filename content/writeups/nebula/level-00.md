@@ -3,6 +3,7 @@ title: "Nebula — Level 00"
 date: 2026-09-25T19:56:16Z
 weight: 1
 series: "nebula"
+thumbLabel: "00"
 tags: ["nebula", "linux", "suid"]
 description: "Writeup du level 00 de Nebula (Exploit Education) : Bits SUID et find."
 ---

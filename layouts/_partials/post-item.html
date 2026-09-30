@@ -1,7 +1,22 @@
+{{- $img := "" -}}
+{{- with .Params.image -}}
+  {{- $img = or ($.Resources.GetMatch .) (resources.Get .) -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- with .CurrentSection -}}{{- with .Params.image -}}
+    {{- $img = or ($.CurrentSection.Resources.GetMatch .) (resources.Get .) -}}
+  {{- end -}}{{- end -}}
+{{- end -}}
+{{- $label := .Params.thumbLabel | default (index (split (index (split .Title " ") 0) "-") 0 | upper | truncate 5 "") -}}
 <li class="post-item">
-  <a class="post-link" href="{{ .RelPermalink }}">
-    <h3 class="post-title">{{ .Title }}{{ if .Draft }} <span class="badge">brouillon</span>{{ end }}</h3>
+  <a class="post-thumb" href="{{ .RelPermalink }}" tabindex="-1">
+    {{ partial "thumb.html" (dict "img" $img "fit" .Params.imageFit "kicker" (.Params.series | default .Section) "label" $label "alt" "") }}
   </a>
-  {{ partial "post-meta.html" . }}
-  {{ with .Description | default .Summary }}<p class="post-summary">{{ . | plainify | truncate 180 }}</p>{{ end }}
+  <div class="post-body">
+    <a class="post-link" href="{{ .RelPermalink }}">
+      <h3 class="post-title">{{ .Title }}{{ if .Draft }} <span class="badge">brouillon</span>{{ end }}</h3>
+    </a>
+    {{ partial "post-meta.html" . }}
+    {{ with .Description | default .Summary }}<p class="post-summary">{{ . | plainify | truncate 180 }}</p>{{ end }}
+  </div>
 </li>

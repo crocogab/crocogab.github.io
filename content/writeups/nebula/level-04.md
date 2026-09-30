@@ -3,6 +3,7 @@ title: "Nebula — Level 04"
 date: 2026-09-25T20:48:52Z
 weight: 5
 series: "nebula"
+thumbLabel: "04"
 tags: ["nebula", "linux", "symlink"]
 description: "Writeup du level 04 de Nebula (Exploit Education) : Lien symbolique."
 ---

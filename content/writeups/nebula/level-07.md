@@ -3,6 +3,7 @@ title: "Nebula — Level 07"
 date: 2026-09-27T13:03:40Z
 weight: 8
 series: "nebula"
+thumbLabel: "07"
 tags: ["nebula", "linux", "command-injection", "perl", "web"]
 description: "Writeup du level 07 de Nebula (Exploit Education) : thttpd, Perl et injection de commandes."
 ---

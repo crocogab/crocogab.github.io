@@ -3,6 +3,8 @@ title: "Nebula — Level 08"
 date: 2026-09-27T15:37:13Z
 weight: 9
 series: "nebula"
+image: "Capture1.png"
+thumbLabel: "08"
 tags: ["nebula", "linux", "wireshark", "network"]
 description: "Writeup du level 08 de Nebula (Exploit Education) : Wireshark, réseau et Telnet."
 ---

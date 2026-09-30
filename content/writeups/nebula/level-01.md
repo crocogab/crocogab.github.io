@@ -3,6 +3,7 @@ title: "Nebula — Level 01"
 date: 2026-09-25T19:56:16Z
 weight: 2
 series: "nebula"
+thumbLabel: "01"
 tags: ["nebula", "linux", "suid", "env", "path"]
 description: "Writeup du level 01 de Nebula (Exploit Education) : UID réel, effectif, saved et env."
 ---

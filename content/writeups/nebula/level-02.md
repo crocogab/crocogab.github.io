@@ -3,6 +3,7 @@ title: "Nebula — Level 02"
 date: 2026-09-25T19:56:16Z
 weight: 3
 series: "nebula"
+thumbLabel: "02"
 tags: ["nebula", "linux", "command-injection", "env"]
 description: "Writeup du level 02 de Nebula (Exploit Education) : Injection de commandes via l'environnement."
 ---

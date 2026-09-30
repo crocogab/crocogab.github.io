@@ -3,6 +3,7 @@ title: "Nebula — Level 09"
 date: 2026-09-29T14:51:05Z
 weight: 10
 series: "nebula"
+thumbLabel: "09"
 tags: ["nebula", "linux", "php", "code-injection"]
 description: "Writeup du level 09 de Nebula (Exploit Education) : PHP eval et regex."
 ---

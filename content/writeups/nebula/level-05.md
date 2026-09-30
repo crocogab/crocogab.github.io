@@ -3,6 +3,7 @@ title: "Nebula — Level 05"
 date: 2026-09-27T11:40:31Z
 weight: 6
 series: "nebula"
+thumbLabel: "05"
 tags: ["nebula", "linux", "ssh", "permissions"]
 description: "Writeup du level 05 de Nebula (Exploit Education) : Archives TAR, SSH et permissions de dossiers."
 ---

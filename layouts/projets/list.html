@@ -7,7 +7,10 @@
 
 <ul class="project-list">
   {{ range hugo.Data.projets.projets }}
+  {{ $img := "" }}{{ with .image }}{{ $img = resources.Get (printf "images/projets/%s" .) }}{{ end }}
   <li class="project">
+    {{ partial "thumb.html" (dict "img" $img "fit" .fit "kicker" (index .stack 0) "label" (substr .nom 0 2 | upper) "alt" .nom) }}
+    <div class="project-body">
     <div class="project-head">
       <h2 class="project-title">
         {{ with .url }}<a href="{{ . }}" rel="noopener" target="_blank">{{ end }}{{ .nom }}{{ with .url }}</a>{{ end }}
@@ -18,6 +21,7 @@
     <div class="project-foot">
       <span class="tags">{{ range .stack }}<span class="tag">{{ . }}</span>{{ end }}</span>
       {{ with .repo }}<a class="project-repo" href="{{ . }}" rel="noopener" target="_blank">code source →</a>{{ end }}
+    </div>
     </div>
   </li>
   {{ end }}
