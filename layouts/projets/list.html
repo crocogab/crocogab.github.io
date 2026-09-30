@@ -1,0 +1,29 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+</header>
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+<ul class="project-list">
+  {{ range hugo.Data.projets.projets }}
+  {{ $img := "" }}{{ with .image }}{{ $img = resources.Get (printf "images/projets/%s" .) }}{{ end }}
+  <li class="project">
+    {{ partial "thumb.html" (dict "img" $img "fit" .fit "kicker" (index .stack 0) "label" (substr .nom 0 2 | upper) "alt" .nom) }}
+    <div class="project-body">
+    <div class="project-head">
+      <h2 class="project-title">
+        {{ with .url }}<a href="{{ . }}" rel="noopener" target="_blank">{{ end }}{{ .nom }}{{ with .url }}</a>{{ end }}
+      </h2>
+      {{ with .date }}<span class="project-date">{{ . }}</span>{{ end }}
+    </div>
+    <p class="project-desc">{{ .description | markdownify }}</p>
+    <div class="project-foot">
+      <span class="tags">{{ range .stack }}<span class="tag">{{ . }}</span>{{ end }}</span>
+      {{ with .repo }}<a class="project-repo" href="{{ . }}" rel="noopener" target="_blank">code source →</a>{{ end }}
+    </div>
+    </div>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

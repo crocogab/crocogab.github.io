@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="post">
+  <header class="page-header">
+    {{ with .Parent }}{{ if not .IsHome }}<p class="breadcrumb"><a href="{{ .RelPermalink }}">← {{ .Title }}</a></p>{{ end }}{{ end }}
+    <h1>{{ .Title }}{{ if .Draft }} <span class="badge">brouillon</span>{{ end }}</h1>
+    {{ partial "post-meta.html" . }}
+  </header>
+
+  {{ if and .Params.toc (gt (len .TableOfContents) 32) }}
+  <details class="toc" open>
+    <summary>Sommaire</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{ end }}
+
+  <div class="prose">{{ .Content }}</div>
+
+  {{ if .Params.series }}
+  <nav class="post-nav" aria-label="Articles de la série">
+    {{ $pages := .CurrentSection.RegularPages.ByWeight }}
+    {{ with $pages.Prev . }}<a class="post-nav-next" href="{{ .RelPermalink }}"><span>Suivant</span>{{ .Title }} →</a>{{ end }}
+    {{ with $pages.Next . }}<a class="post-nav-prev" href="{{ .RelPermalink }}"><span>Précédent</span>← {{ .Title }}</a>{{ end }}
+  </nav>
+  {{ end }}
+</article>
+{{ end }}

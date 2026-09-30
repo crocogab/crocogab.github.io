@@ -1,0 +1,24 @@
+{{- /*
+  Vignette 16:10. Paramètres (dict) :
+    img   : ressource image (page bundle ou assets/), optionnelle
+    fit   : "contain" pour un logo (pas de recadrage), sinon recadrage "cover"
+    kicker: petit texte en haut de la tuile de repli (ex. "nebula")
+    label : grand texte de la tuile de repli (ex. "08")
+    alt   : texte alternatif
+*/ -}}
+{{- with .img -}}
+  {{- $img := . -}}
+  {{- if eq $.fit "contain" -}}
+    {{- $img = .Fit "320x200 webp q85" -}}
+  {{- else -}}
+    {{- $img = .Fill "320x200 Center webp q85" -}}
+  {{- end -}}
+  <span class="thumb{{ if eq $.fit "contain" }} thumb-contain{{ end }}">
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.alt }}" loading="lazy" decoding="async">
+  </span>
+{{- else -}}
+  <span class="thumb thumb-tile" aria-hidden="true">
+    {{- with .kicker }}<span class="thumb-kicker">{{ . }}</span>{{ end -}}
+    <span class="thumb-label">{{ .label }}</span>
+  </span>
+{{- end -}}

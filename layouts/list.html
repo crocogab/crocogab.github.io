@@ -1,0 +1,39 @@
+{{ define "main" }}
+<header class="page-header">
+  {{ with .Parent }}{{ if not .IsHome }}<p class="breadcrumb"><a href="{{ .RelPermalink }}">← {{ .Title }}</a></p>{{ end }}{{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+</header>
+
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+{{ with .Sections }}
+<section class="home-section">
+  <h2 class="section-heading">Séries</h2>
+  <ul class="card-list">
+    {{ range . }}
+    <li class="card">
+      <a href="{{ .RelPermalink }}">
+        <h3>{{ .Title }}</h3>
+        {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+        <span class="card-meta">{{ len .RegularPages }} articles</span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{ $pages := .RegularPagesRecursive.ByDate.Reverse }}
+{{ if eq .Params.order "weight" }}{{ $pages = .RegularPages.ByWeight }}{{ end }}
+{{ with $pages }}
+<section class="home-section">
+  {{ if $.Sections }}<h2 class="section-heading">Tous les articles</h2>{{ end }}
+  <ul class="post-list">
+    {{ range . }}{{ partial "post-item.html" . }}{{ end }}
+  </ul>
+</section>
+{{ else }}
+  {{ if not $.Content }}<p class="empty">Rien ici pour le moment.</p>{{ end }}
+{{ end }}
+{{ end }}
