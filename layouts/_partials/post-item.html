@@ -1,0 +1,7 @@
+<li class="post-item">
+  <a class="post-link" href="{{ .RelPermalink }}">
+    <h3 class="post-title">{{ .Title }}{{ if .Draft }} <span class="badge">brouillon</span>{{ end }}</h3>
+  </a>
+  {{ partial "post-meta.html" . }}
+  {{ with .Description | default .Summary }}<p class="post-summary">{{ . | plainify | truncate 180 }}</p>{{ end }}
+</li>

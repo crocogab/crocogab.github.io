@@ -1,0 +1,10 @@
+{{ define "main" }}
+<header class="page-header">
+  <p class="breadcrumb"><a href="{{ .Parent.RelPermalink }}">← Tags</a></p>
+  <h1>#{{ .Title }}</h1>
+  <p class="page-subtitle">{{ len .Pages }} article{{ if gt (len .Pages) 1 }}s{{ end }}</p>
+</header>
+<ul class="post-list">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "post-item.html" . }}{{ end }}
+</ul>
+{{ end }}

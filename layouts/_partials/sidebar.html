@@ -1,0 +1,40 @@
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <a class="sidebar-brand" href="{{ "/" | relURL }}">
+      <img class="sidebar-avatar" src="{{ site.Params.avatar | relURL }}" alt="" width="92" height="92">
+      <span class="sidebar-name">{{ site.Title }}</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="sidebar-panel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+
+  <div class="sidebar-panel" id="sidebar-panel">
+    <p class="sidebar-tagline">{{ site.Params.description }}</p>
+
+    <div class="sidebar-toolbar">
+      <button class="theme-toggle" type="button" aria-label="Changer de thème" title="Changer de thème">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <span class="label-dark">Mode sombre</span><span class="label-light">Mode clair</span>
+      </button>
+    </div>
+
+    <nav aria-label="Navigation principale">
+      <ul class="sidebar-nav">
+        {{ $current := . }}
+        {{ range $i, $m := site.Menus.main }}
+          {{ $active := or ($current.IsMenuCurrent "main" $m) ($current.HasMenuCurrent "main" $m) }}
+          {{ with $m.Page }}{{ if and (not $active) (eq .Section $current.Section) (ne .Section "") }}{{ $active = true }}{{ end }}{{ end }}
+          <li><a href="{{ $m.URL }}"{{ if $active }} class="active" aria-current="page"{{ end }}>
+            <span class="nav-num">{{ printf "%02d" (add $i 1) }}</span><span>{{ $m.Name }}</span>
+          </a></li>
+        {{ end }}
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      {{ partial "social.html" . }}
+    </div>
+  </div>
+</aside>

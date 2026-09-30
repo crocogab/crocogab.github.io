@@ -1,0 +1,41 @@
+
+[[projets]]
+nom = "Leakwatch.net"
+date = "2025 – 2026"
+url = "https://leakwatch.net"
+description = "Détecteur distribué de fuites de secrets. Pipeline de scan temps réel des commits publics (GitHub, GitLab, Codeberg) avec validation active des clés API fuitées, et triage des faux positifs par un LLM local fine-tuné servi avec Ollama."
+stack = ["Python", "FastAPI", "Celery", "Redis", "PostgreSQL", "Ollama", "Docker Swarm"]
+
+[[projets]]
+nom = "Infrastructure du CTF Hackin'TN"
+date = "2025 – 2026"
+description = "Conception, déploiement et maintien de l'infrastructure du CTF annuel du club de cybersécurité de Télécom Nancy sur un cluster de Raspberry Pi. Création de challenges Web, Crypto et Reverse, avec leurs write-ups."
+stack = ["Docker Swarm", "Raspberry Pi", "CTFd", "Web", "Crypto", "Reverse"]
+
+[[projets]]
+nom = "CTF-TOOLS"
+repo = "https://github.com/crocogab/CTF-TOOLS"
+description = "Mes outils et payloads de CTF."
+stack = ["Python"]
+
+[[projets]]
+nom = "LFI-zip-exploit"
+date = "2025"
+repo = "https://github.com/crocogab/LFI-zip-exploit"
+description = "Outil d'exploitation de LFI (Local File Inclusion) qui passe par des archives ZIP déguisées en `.jpg` pour contourner les filtres d'upload."
+stack = ["Python", "Web"]
+
+[[projets]]
+nom = "EmmentaLeak"
+date = "2025"
+repo = "https://github.com/crocogab/EmmentaLeak"
+description = "Projet de groupe (PPII, Télécom Nancy) : application web de détection de fuites de données sensibles."
+stack = ["Python", "SQL", "HTML/CSS"]
+
+[[projets]]
+nom = "CrossyRoadC"
+date = "2025"
+repo = "https://github.com/crocogab/CrossyRoadC"
+description = "Réimplémentation du jeu Crossy Road en C avec la SDL (sans moteur de jeu), avec une IA basique."
+stack = ["C", "SDL", "IA"]
+
